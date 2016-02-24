@@ -12,6 +12,10 @@ class MexicoCountryManager(models.Manager):
 	def queryset(self):
 		return super().get_queryset().filter(pais = 'MX')
 
+class VuelosManager(models.Manager):
+	def get_queryset(self):
+		return super(VuelosManager, self).get_queryset().all()
+
 # Create your models here.
 class Aerolinea(models.Model):
 
@@ -48,6 +52,9 @@ class Vuelo(models.Model):
 
 	def __str__(self):
 		return (self.aerolinea.nombre + " " + self.destino.nombre)
+
+	#Manager
+	object = VuelosManager()
 
 class Bitacora(models.Model):
 

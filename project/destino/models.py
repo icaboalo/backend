@@ -5,12 +5,12 @@ from utils.countryinfo import COUNTRY_CHOICES
 
 #ModelManager
 class RatingManager(models.Manager):
-	def queryset(self):
+	def get_queryset(self):
 		return super().get_queryset().filter(rating_gt = 2)
 
 class MexicoCountryManager(models.Manager):
-	def queryset(self):
-		return super().get_queryset().filter(pais = 'MX')
+	def get_queryset(self):
+		return super(MexicoCountryManager, self).get_queryset().filter(pais = 'MX')
 
 # Create your models here.
 class Destino(models.Model):
@@ -26,7 +26,7 @@ class Destino(models.Model):
 	nombre = models.CharField(max_length = 100, blank = False)
 	pais = models.CharField(choices = COUNTRY_CHOICES, max_length = 2, blank = False)
 	Continente = models.CharField(max_length = 100, blank = False)
-	imagen = models.ImageField(upload_to = 'media/pais/')
+	imagen = models.ImageField(upload_to = 'media/pais/', blank = True)
 	is_active = models.BooleanField(default = True)
 	rating = models.IntegerField(blank = True, validators = [MaxValueValidator(10),
             MinValueValidator(1)])

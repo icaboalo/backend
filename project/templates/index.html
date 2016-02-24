@@ -1,0 +1,16 @@
+
+{% extends "header.html" %}
+
+{% block title %}Destino{% endblock %}
+	{% block head %}Destinos{% endblock %}
+	{% block content %}
+	<ul>
+	{% for destino in destino %}
+		<li>{{destino.nombre}}</li>
+		<li>{{destino.pais}}</li>
+		<li>{{destino.continente}}</li>
+		<li>{{destino.rating}}</li>	
+	{% endfor %}
+	</ul>
+	{% endblock %}
+{% include "footer.html" %}
